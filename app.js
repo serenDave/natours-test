@@ -16,6 +16,7 @@ const reviewsRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 
+// Start new app
 const app = express();
 
 // Telling Express what templating engine we'll be using 
