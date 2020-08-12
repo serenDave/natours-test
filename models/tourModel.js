@@ -159,7 +159,6 @@ tourSchema.virtual('reviews', {
 tourSchema.pre('save', function(next) {
     // In a safe middleare "this" keyword is gonna point 
     // to the currently processed document
-    // console.log(this);
 
     this.slug = slugify(this.name, { lower: true });
     next();
@@ -191,10 +190,10 @@ tourSchema.pre(/^find/, function(next) {
 });
 
 // "This" still points to processed query
-tourSchema.post(/^find/, function(docs, next) {
-    console.log(`Query took: ${Date.now() - this.start} milliseconds`);
-    next();
-});
+// tourSchema.post(/^find/, function(docs, next) {
+//     console.log(`Query took: ${Date.now() - this.start} milliseconds`);
+//     next();
+// });
 
 // AGGREGATION MIDDLEWARE
 // tourSchema.pre('aggregate', function(next) {

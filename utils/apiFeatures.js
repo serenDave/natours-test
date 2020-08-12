@@ -7,7 +7,6 @@ class APIFeatures {
     filter() {
         // 1) Filtering
         const queryObj = { ...this.queryString };
-        // console.log(queryObj);
 
         const excludedFiels = ['page', 'sort', 'limit', 'fields'];
         excludedFiels.forEach(field => delete queryObj[field]);
@@ -26,7 +25,6 @@ class APIFeatures {
         // 3) Sorting
         if (this.queryString.sort) {
             const sortBy = this.queryString.sort.replace(/,/g, ' ');
-            // console.log(sortBy);
             this.queryDB = this.queryDB.sort(sortBy);
             // sort('price ratingsAverage')
         } else {
@@ -41,7 +39,6 @@ class APIFeatures {
         if (this.queryString.fields) {
             const fields = this.queryString.fields.replace(/,/g, ' ');
             this.queryDB = this.queryDB.select(fields);
-            // console.log(fields);
         } else {
             // - meands excluding
             this.queryDB = this.queryDB.select('-__v');
