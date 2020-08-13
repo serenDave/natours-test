@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const errorHandler = require('./controllers/errorController');
@@ -33,6 +34,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // GLOBAL MIDDLEWARES
+
+// Implement CORS
+app.use(cors());
+
+// app.use(cors({ origin: 'https://www.natours.com' }));
+
+// OPTIONS HTTP method (needed for "complex" requests like PATCH or DELETE)
+app.options('*', cors());
 
 // Set security HTTP headers
 app.use(helmet());
