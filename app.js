@@ -21,6 +21,8 @@ const bookingRouter = require('./routes/bookingRoutes');
 // Start new app
 const app = express();
 
+app.enable('trust proxy');
+
 // Telling Express what templating engine we'll be using 
 app.set('view engine', 'pug');
 
