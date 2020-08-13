@@ -63,11 +63,7 @@ app.use('/api', limiter);
 
 // A route for stripe webhook 
 // (is here because we need the body coming from the request not in JSON)
-app.post(
-    '/webhook-checkout', 
-    express.raw({ type: 'application/json '}), 
-    bookingController.webhookCheckout
-);
+app.post('/webhook-checkout', express.raw({ type: 'application/json ' }), bookingController.webhookCheckout);
 
 // Body parser
 app.use(express.json({ limit: '10kb' }));
