@@ -5,10 +5,10 @@ const Tour = require('../models/tourModel');
 const User = require('../models/userModel');
 const factory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
+
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
-    const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
     // 1) Get the currently booked tour
     const tour = await Tour.findById(req.params.tourId);
@@ -62,7 +62,6 @@ exports.webhookCheckout = catchAsync(async (req, res, next) => {
     // When stripe calls our webhook, it will add a header to this request,
     // containing a special signature
     const signature = req.headers['stripe-signature'];
-    const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
     let event;
 
     try {
