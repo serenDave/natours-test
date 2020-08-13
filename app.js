@@ -19,6 +19,8 @@ const reviewsRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 
+const bookingController = require('./controllers/bookingController');
+
 // Start new app
 const app = express();
 
@@ -58,6 +60,14 @@ const limiter = rateLimit({
     message: 'Too many request from the same IP per amount of time. Please, try again in 1 hour.'
 });
 app.use('/api', limiter);
+
+// A route for stripe webhook 
+// (is here because we need the body coming from the request not in JSON)
+app.post(
+    '/webhook-checkout', 
+    express.raw({ type: 'application/json '}), 
+    bookingController.webhookCheckout
+);
 
 // Body parser
 app.use(express.json({ limit: '10kb' }));
