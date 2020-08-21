@@ -140,7 +140,7 @@ tourSchema.index({ startLocation: '2dsphere' });
 /** 
 * We need a regular function here, because arrow function 
 * shares the "this" keyword with the surroundings
-* while regular functions puths "this" where it was called
+* while regular functions puts "this" where it was called
 */
 tourSchema.virtual('durationWeeks').get(function() {
     return Math.ceil(this.duration / 7);

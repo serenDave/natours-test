@@ -1,5 +1,8 @@
-const path = require('path');
+// EXPRESS
 const express = require('express');
+
+// NECESSARY MIDDLEWARE
+const path = require('path');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -10,9 +13,11 @@ const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const cors = require('cors');
 
+// ERROR HANDLERS
 const AppError = require('./utils/appError');
 const errorHandler = require('./controllers/errorController');
 
+// ROUTERS
 const toursRouter = require('./routes/tourRoutes');
 const usersRouter = require('./routes/userRoutes');
 const reviewsRouter = require('./routes/reviewRoutes');

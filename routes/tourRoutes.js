@@ -23,8 +23,7 @@ router.route('/tours-within/:distance/center/:latlng/unit/:unit')
 router.route('/distances/:latlng/unit/:unit')
     .get(tourController.getDistances); 
 
-router
-    .route('/')
+router.route('/')
     .get(tourController.getAllTours)
     .post(
         authController.protect,
@@ -32,8 +31,7 @@ router
         tourController.createTour,
     );
 
-router
-    .route('/:id')
+router.route('/:id')
     .get(tourController.getSelectedTour)
     .patch(
         authController.protect,
